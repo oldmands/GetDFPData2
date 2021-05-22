@@ -5,6 +5,7 @@ library(devtools)
 library(tidyverse)
 library(GetDFPData2)
 
+#outros dados das firmas
 df_info <- get_info_companies(tempdir())
 print(df_info )
 
@@ -20,13 +21,11 @@ l_dfp <- get_dfp_data(companies_cvm_codes = NULL,
 
 str(l_dfp)
 
-l_dfp_EM <- l_dfp %>% 
-  
-
-writexl::write_xlsx(x = list(df_info = df_info),
+writexl::write_xlsx(x = list(companies_info = df_info,
+                             DRE = l_dfp$`DF Consolidado - Demonstração do Resultado`,
+                             Ativo = l_dfp$`DF Consolidado - Balanço Patrimonial Ativo`,
+                             Passivo = l_dfp$`DF Consolidado - Balanço Patrimonial Passivo`),
                     path = 'D:/Desktop/FINOR/DadosEmpresasB3.xlsx',
                     format_headers = F)
-writexl::write_xlsx(x = list(DRE = l_dfp$`DF Consolidado - Demonstração do Resultado`),
-                    path = 'D:/Desktop/FINOR/l_dfp.xlsx',
-                    format_headers = F)
+
                     
