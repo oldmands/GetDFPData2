@@ -1,15 +1,13 @@
-install.packages("devtools")
-install.packages("tidyverse")
-devtools::install_github('msperlin/GetDFPData2')
-library(devtools)
+# install.packages("devtools")
+# install.packages("tidyverse")
+# devtools::install_github('msperlin/GetDFPData2')
+# library(devtools)
 library(tidyverse)
 library(GetDFPData2)
 
-#outros dados das firmas
 df_info <- get_info_companies(tempdir())
 print(df_info )
 
-# downloading DFP data
 l_dfp <- get_dfp_data(companies_cvm_codes = NULL, 
                       use_memoise = FALSE,
                       clean_data = TRUE,
@@ -18,8 +16,6 @@ l_dfp <- get_dfp_data(companies_cvm_codes = NULL,
                       type_format = 'con',
                       first_year = 2010, 
                       last_year = 2020)
-
-str(l_dfp)
 
 writexl::write_xlsx(x = list(companies_info = df_info,
                              DRE = l_dfp$`DF Consolidado - Demonstração do Resultado`,
