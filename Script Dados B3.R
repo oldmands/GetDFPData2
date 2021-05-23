@@ -6,12 +6,11 @@ library(tidyverse)
 library(GetDFPData2)
 
 df_info <- get_info_companies(tempdir())
-print(df_info )
 
 l_dfp <- get_dfp_data(companies_cvm_codes = NULL, 
                       use_memoise = FALSE,
                       clean_data = TRUE,
-                      cache_folder = tempdir(), # use local folder in live code
+                      cache_folder = tempdir(),
                       type_docs = c("BPA", "BPP", "DRE"),
                       type_format = 'con',
                       first_year = 2010, 
